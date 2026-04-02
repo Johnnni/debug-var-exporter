@@ -1,0 +1,78 @@
+{
+  "name": "debug-var-exporter",
+  "displayName": "Debug Var Exporter",
+  "description": "Exporta todas as vari\u00e1veis do debug (incluindo arrays/objetos) para clipboard ou arquivo JSON",
+  "version": "1.2.0",
+  "publisher": "johnni",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Debuggers"
+  ],
+  "activationEvents": [
+    "onDebug"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "debugVars.exportToClipboard",
+        "title": "Debug: Export Variables to Clipboard"
+      },
+      {
+        "command": "debugVars.exportToFile",
+        "title": "Debug: Export Variables to File"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "debugVars.exportToClipboard",
+        "key": "ctrl+shift+alt+c",
+        "when": "inDebugMode"
+      },
+      {
+        "command": "debugVars.exportToFile",
+        "key": "ctrl+shift+alt+f",
+        "when": "inDebugMode"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "debugVars.exportToClipboard",
+          "when": "inDebugMode"
+        },
+        {
+          "command": "debugVars.exportToFile",
+          "when": "inDebugMode"
+        }
+      ],
+      "debug/variables/context": [
+        {
+          "command": "debugVars.exportToClipboard",
+          "when": "inDebugMode",
+          "group": "1_export@1"
+        },
+        {
+          "command": "debugVars.exportToFile",
+          "when": "inDebugMode",
+          "group": "1_export@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/placeholder/debug-var-exporter"
+  }
+}
